@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Kuis Tes Formatif Bahasa Inggris – Renewable Energy &amp; Electronic Money</title>
+<style>
+:root{--ink:#14213d;--mut:#54627c;--line:#d9e2ef;--card:#fff;--acc:#2563eb;--acc-d:#1d4ed8;--acc-l:#dbeafe;--bg:#eef4ff;--sh:0 10px 30px rgba(20,33,61,.10);--r:20px;--hdr:0px}
+body.th0{--acc:#15803d;--acc-d:#14532d;--acc-l:#dcfce7;--bg:#eef9f1}
+body.th1{--acc:#0369a1;--acc-d:#0c4a6e;--acc-l:#e0f2fe;--bg:#ecf7fd}
+body.th2{--acc:#6d28d9;--acc-d:#4c1d95;--acc-l:#ede9fe;--bg:#f4f0fe}
+body.th3{--acc:#c2410c;--acc-d:#7c2d12;--acc-l:#ffedd5;--bg:#fff4ea}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background:linear-gradient(180deg,var(--bg),#fff 70%) fixed;color:var(--ink);font:19px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-text-size-adjust:100%}
+button,input{font-family:inherit}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:0;z-index:20;background:var(--acc);color:#fff;box-shadow:0 4px 18px rgba(0,0,0,.16)}
+.top:empty{display:none}
+.top .row{display:flex;align-items:center;gap:16px;padding:12px clamp(14px,3vw,40px) 10px}
+.brand{font-weight:800;font-size:1.05rem;letter-spacing:.01em}
+.prog{margin-left:auto;display:flex;align-items:center;gap:12px;font-weight:700;white-space:nowrap}
+.bar{width:clamp(90px,18vw,220px);height:12px;border-radius:99px;background:rgba(255,255,255,.3);overflow:hidden}
+.bar i{display:block;height:100%;background:#fff;border-radius:99px;transition:width .3s}
+.steps{display:flex;gap:10px;padding:0 clamp(14px,3vw,40px) 12px;overflow-x:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.timer{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.22);border-radius:99px;padding:4px 14px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.timer b{font-size:1.15rem}
+.timer.warn{background:#fef3c7;color:#92400e}
+.timer.danger{background:#dc2626;color:#fff}
+@media(prefers-reduced-motion:no-preference){.timer.danger{animation:tp 1s ease-in-out infinite}}
+@keyframes tp{50%{opacity:.7}}
+.step{appearance:none;border:2px solid rgba(255,255,255,.6);background:transparent;color:#fff;border-radius:99px;padding:8px 18px;font-weight:700;font-size:.95rem;cursor:pointer;white-space:nowrap}
+.step:hover{background:rgba(255,255,255,.18)}
+.step[aria-current="true"]{background:#fff;color:var(--acc-d);border-color:#fff}
+.step small{margin-left:8px;font-weight:700;opacity:.85;font-size:.85rem}
+
+/* ---------- layout ---------- */
+main{max-width:1500px;margin:0 auto;padding:24px clamp(14px,3vw,40px) 12px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line)}
+.wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;align-items:start}
+@media(max-width:980px){.wrap{grid-template-columns:1fr}.passage{position:static!important;max-height:none!important}}
+
+.passage{position:sticky;top:calc(var(--hdr) + 16px);max-height:calc(100vh - var(--hdr) - 150px);overflow:auto;padding:28px 30px 14px;border-left:10px solid var(--acc)}
+.kick{font-weight:800;font-size:.85rem;letter-spacing:.07em;text-transform:uppercase;color:var(--acc)}
+.passage h2{margin:2px 0 4px;font-size:1.55rem;line-height:1.25;color:var(--acc-d)}
+.hint{margin:0 0 6px;color:var(--mut);font-size:.9rem}
+.para{display:flex;gap:14px;margin:18px 0}
+.pn{flex:none;width:34px;height:34px;border-radius:50%;background:var(--acc-l);color:var(--acc-d);font-weight:800;display:grid;place-items:center;font-size:.95rem;margin-top:3px}
+.para p{margin:0;font-size:1.1rem;line-height:1.7}
+
+.q{padding:24px 26px 14px;margin-bottom:22px;scroll-margin-top:calc(var(--hdr) + 16px)}
+.qh{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.qn{background:var(--acc);color:#fff;border-radius:99px;padding:5px 16px;font-weight:800}
+.q.done .qn::after{content:" ✓"}
+.tag{background:var(--acc-l);color:var(--acc-d);border-radius:99px;padding:4px 14px;font-weight:700;font-size:.85rem}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{display:block;width:100%;padding:0;margin:0 0 12px;font-size:1.32rem;font-weight:800;line-height:1.35}
+.opt{position:relative;display:flex;gap:14px;align-items:center;padding:13px 16px;border:2px solid var(--line);border-radius:16px;margin:10px 0;cursor:pointer;background:#fff;transition:border-color .15s,background .15s,box-shadow .15s}
+.opt:hover{border-color:var(--acc);background:var(--acc-l)}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt b{flex:none;width:40px;height:40px;border-radius:50%;background:var(--acc-l);color:var(--acc-d);display:grid;place-items:center;font-weight:800}
+.opt span{font-size:1.12rem;line-height:1.45}
+.opt.sel{border-color:var(--acc);background:var(--acc-l);box-shadow:0 0 0 3px rgba(0,0,0,.06)}
+.opt.sel b{background:var(--acc);color:#fff}
+.opt:focus-within{outline:3px solid var(--acc);outline-offset:2px}
+
+/* ---------- pager ---------- */
+.pager{position:fixed;left:0;right:0;bottom:0;z-index:15;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;justify-content:space-between;padding:12px clamp(14px,3vw,40px)}
+.pager:empty{display:none}
+.pinfo{color:var(--mut);font-weight:700;text-align:center;font-size:.95rem}
+.btn{appearance:none;border:2px solid var(--acc);border-radius:14px;padding:13px 26px;font-weight:800;font-size:1.05rem;cursor:pointer;background:var(--acc);color:#fff}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:#fff;color:var(--acc-d)}
+.btn.danger{background:#fff;color:#b91c1c;border-color:#b91c1c}
+.btn:disabled{opacity:.4;cursor:default;filter:none}
+.btn.big{padding:16px 40px;font-size:1.2rem}
+
+/* ---------- mulai ---------- */
+.hero{max-width:1100px;margin:0 auto;text-align:center;padding-top:clamp(10px,4vw,48px)}
+.hero .pillk{display:inline-block;background:var(--acc);color:#fff;border-radius:99px;padding:8px 24px;font-weight:800;letter-spacing:.05em;font-size:.95rem}
+.hero h1{margin:22px 0 8px;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.08;font-weight:800}
+.hero .sub{margin:0;font-size:clamp(1.3rem,3vw,2rem);font-weight:700;color:var(--acc)}
+.hero .meta{margin:10px 0 30px;color:var(--mut);font-size:1.15rem}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;text-align:left;margin-bottom:28px}
+.topic{padding:20px 22px 18px;border-top:10px solid var(--c)}
+.topic small{display:block;font-weight:800;color:var(--c);letter-spacing:.04em;font-size:.82rem}
+.topic b{display:block;margin-top:6px;font-size:1.12rem;line-height:1.3}
+.howto{text-align:left;padding:22px 28px;margin-bottom:28px}
+.howto h3{margin:0 0 8px}
+.howto ul{margin:0;padding-left:22px}.howto li{margin:6px 0}
+.startbox{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center}
+.field{display:flex;flex-direction:column;text-align:left;gap:4px}
+.field label{font-weight:700;font-size:.9rem;color:var(--mut)}
+.field input{font-size:1.1rem;padding:13px 16px;border:2px solid var(--line);border-radius:14px;min-width:min(340px,80vw)}
+.field input:focus{outline:3px solid var(--acc);border-color:var(--acc)}
+.field .req{color:#dc2626}
+.field .err{display:none;color:#b91c1c;font-weight:700;font-size:.85rem}
+.field.bad input{border-color:#dc2626;background:#fef2f2}
+.field.bad .err{display:block}
+.idcard{max-width:900px;margin:0 auto;padding:26px clamp(18px,4vw,34px) 30px;text-align:left}
+.idcard h3{margin:0 0 4px;font-size:1.3rem}
+.idcard .note{margin:0 0 18px}
+.idgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.idgrid .field input{width:100%;min-width:0;box-sizing:border-box}
+.idcard .go{display:flex;justify-content:center;margin-top:24px}
+.printid{display:none}
+.foot{max-width:1500px;margin:0 auto;padding:18px clamp(14px,3vw,40px) 28px;text-align:center;color:var(--mut);font-size:.9rem;line-height:1.5}
+.foot span{display:inline-block;border-top:1px solid var(--line);padding-top:14px}
+.foot b{color:var(--ink)}
+body[class*="th"] .foot{padding-bottom:110px}
+
+/* ---------- hasil ---------- */
+.res{max-width:1100px;margin:0 auto}
+.res h1{margin:6px 0 4px;font-size:clamp(1.8rem,4vw,2.6rem)}
+.summary{padding:22px 26px;margin:18px 0 22px}
+.res{text-align:center}
+.scorecard{max-width:560px;margin:22px auto;padding:34px clamp(18px,5vw,40px) 30px}
+.sc-n{font-size:clamp(5rem,22vw,8rem);line-height:1;font-weight:800;color:var(--acc)}
+.sc-l{margin-top:6px;font-weight:700;color:var(--mut)}
+.sc-d{margin:18px 0 0;font-size:1.3rem}
+.sc-id{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:26px 0 0;padding-top:20px;border-top:1px solid var(--line);text-align:left}
+.sc-id dt{font-weight:700;color:var(--mut)}
+.sc-id dd{margin:0;font-weight:700;overflow-wrap:anywhere}
+.summary .big{font-size:1.5rem;font-weight:800}
+.warn{margin:8px 0 0;color:#9a3412;font-weight:700}
+.grp{margin:24px 0}
+.grp h3{margin:0 0 12px;font-size:1.15rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.cell{appearance:none;border:2px solid var(--c);color:var(--c);background:#fff;border-radius:14px;padding:10px 6px;text-align:center;cursor:pointer;line-height:1.2}
+.cell small{display:block;font-weight:700;color:var(--mut)}
+.cell b{display:block;font-size:1.9rem}
+.cell:hover{background:#f6f9ff}
+.cell.empty{border-color:#f59e0b;background:#fff7ed;color:#9a3412}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 12px}
+.note{color:var(--mut);font-size:.95rem;margin:10px 0 0}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#14213d;color:#fff;padding:12px 22px;border-radius:99px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}
+.toast.on{opacity:1}
+
+@media(max-width:640px){
+  body{font-size:18px}
+  .brand{display:none}.prog{margin-left:0;width:100%;justify-content:space-between}
+  .passage{padding:22px 20px 8px}.q{padding:20px 18px 10px}
+  .opt{padding:11px 12px;gap:12px}.opt b{width:36px;height:36px}
+  .btn{padding:12px 16px;font-size:1rem}.pinfo{display:none}.pager{justify-content:space-between}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  .printid{display:block;margin:0 0 14px;font-weight:700}
+  .top,.pager,.actions,.toast,.noprint{display:none!important}
+  body{background:#fff}.card{box-shadow:none}
+  main{padding:0}
+}
+</style>
+</head>
+<body>
+<header class="top" id="top"></header>
+<main id="app"><noscript>Kuis ini memerlukan JavaScript. Aktifkan JavaScript di browser Anda.</noscript></main>
+<footer class="foot" id="foot"><span><b>Developer :</b> Asep Subagja, S.Pd &nbsp;|&nbsp; SMAN 1 Ciracap &nbsp;|&nbsp; 2026</span></footer>
+<div class="pager" id="pager"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+"use strict";
+var D={"texts":[{"title":"Renewable Energy Reaches a New Record","paras":["Every year, the International Renewable Energy Agency (IRENA) publishes figures on how much power capacity the world has added. Its report Renewable Capacity Statistics 2026, released in April 2026, covers the year 2025 and shows another record.","According to IRENA, the world added about 692 gigawatts (GW) of renewable power capacity in 2025. This raised the global total to 5,149 GW, an increase of 15.5 percent from the year before. By the end of 2025, renewables made up 49 percent of all installed power capacity, and they accounted for 85.6 percent of the new capacity built during the year.","Solar power led the growth with roughly 510 GW, which is nearly three-quarters of all new renewable capacity. Wind power came second with about 159 GW. Asia added the most, providing 74.2 percent of the new renewable capacity.","However, the report also reveals a challenge. New non-renewable capacity nearly doubled compared with 2024, and China alone added about 100 GW of it, most of which was coal. In other words, renewable energy is growing quickly, but it is not yet replacing fossil fuels everywhere."]},{"title":"Renewable Energy in Indonesia","paras":["Indonesia has many natural energy sources, including rivers, volcanoes, and farmland. Data from the Ministry of Energy and Mineral Resources show that renewable energy made up 15.75 percent of the national energy mix in 2025. In the first quarter of 2026, the share rose to 18.3 percent.","In that quarter, hydropower contributed 3.59 percentage points to the energy mix. Biomass power followed with 3.27 percentage points, and geothermal power added 1.91 percentage points. Geothermal energy is especially important in Indonesia because the country has many volcanoes.","However, progress has been slower than planned. The earlier national target was a 23 percent share of renewable energy by 2025, but the result fell short of that goal. The government now expects to reach 23 percent by 2030. It also aims for renewables to supply 46 percent of the energy mix by 2045.","Biofuels also play a role. Indonesia's biodiesel program has reached B40, which means that diesel fuel is blended with 40 percent biodiesel. This helps to increase the renewable share of the national energy mix."]},{"title":"What Is Electronic Money?","paras":["Electronic money, or e-money, is a payment tool that many Indonesians use to pay for transport, food, and online shopping. Bank Indonesia explains that e-money has three main characteristics.","First, users pay money in advance to the issuer, which is the bank or company that provides the e-money. Second, the value of the money is stored electronically on a server or on a chip. Third, the money managed by the issuer is not a bank deposit as meant in the banking law.","There are two types of e-money based on where the value is stored. Server-based e-money is stored on a server and is usually used through a mobile phone. Chip-based e-money is stored on a chip inside a card, which people tap on a machine to pay.","E-money is also grouped by whether the holder's identity is recorded. In registered e-money, the issuer records the holder's identity, and this type usually offers features such as fund transfers and cash withdrawals. In unregistered e-money, the identity is not recorded, so it has fewer features and works much like cash."]},{"title":"QRIS: One Code for Many Payments","paras":["QRIS stands for Quick Response Code Indonesian Standard. It is a national standard for QR code payments in Indonesia, and it was introduced in 2019.","Before QRIS, different payment providers had their own QR codes, so a shop might have to display several codes at the same counter. With QRIS, a merchant needs only one QR code. Customers can scan it with an app from any participating bank or non-bank provider.","Bank Indonesia reports that QRIS had 65.77 million users and was accepted by 44.86 million merchants by June 2026. Of these merchants, 96.68 percent were micro, small, and medium enterprises (MSMEs), which means that most QRIS merchants are small businesses.","QRIS is not limited to local payments. Bank Indonesia says that Indonesian travelers can pay with their phones in six countries without exchanging cash into the local currency, and the connection is being expanded to other countries."]}],"qs":[{"q":"What is the main idea of the text?","o":["Wind power has become the largest source of electricity in the world.","Asia is the only region that is building renewable power plants.","Renewable power capacity reached a record in 2025, led by solar power, even though non-renewable capacity also grew.","Fossil fuels have been completely replaced by renewable energy.","IRENA publishes new figures on energy prices every month."],"k":"Meringkas · menentukan ide pokok"},{"q":"According to IRENA, how much renewable power capacity did the world add in 2025?","o":["About 159 GW","About 692 GW","About 510 GW","About 5,149 GW","About 100 GW"],"k":"Menemukan informasi rinci"},{"q":"In paragraph 3, the phrase “nearly three-quarters of all new renewable capacity” means that solar power provided ...","o":["just over 25 percent of the new renewable capacity.","exactly half of the new renewable capacity.","more than 90 percent of the new renewable capacity.","a little less than 75 percent of the new renewable capacity.","about one-third of the new renewable capacity."],"k":"Menyajikan kembali · makna kata, rujukan, parafrasa"},{"q":"Which option correctly matches each figure with what it describes?","o":["49 percent – renewables' share of all installed power capacity; 85.6 percent – renewables' share of the new capacity built in 2025","49 percent – renewables' share of the new capacity built in 2025; 85.6 percent – renewables' share of all installed power capacity","15.5 percent – Asia's share of new renewable capacity; 74.2 percent – the growth in total renewable capacity","74.2 percent – the growth in total renewable capacity; 85.6 percent – Asia's share of new capacity","85.6 percent – Asia's share of new renewable capacity; 49 percent – the growth in total renewable capacity"],"k":"Mengelompokkan informasi"},{"q":"Which statement is NOT true according to the text?","o":["Asia added the largest share of new renewable capacity.","New non-renewable capacity nearly doubled compared with 2024.","China added about 100 GW of non-renewable capacity, mostly coal.","Solar power was the biggest source of new renewable capacity.","Wind power added more capacity than solar power in 2025."],"k":"Menemukan informasi rinci"},{"q":"What is the main idea of the text?","o":["Indonesia has already reached a 23 percent share of renewable energy.","Geothermal power is the only renewable source that Indonesia uses.","Biodiesel is more important than every other renewable source.","Indonesia's share of renewable energy is growing, but it is still behind the earlier target.","Indonesia has no plan to increase its renewable energy."],"k":"Meringkas · menentukan ide pokok"},{"q":"What was the share of renewable energy in Indonesia's national energy mix in 2025?","o":["15.75 percent","18.3 percent","23 percent","40 percent","46 percent"],"k":"Menemukan informasi rinci"},{"q":"In paragraph 3, the phrase “fell short of” is closest in meaning to ...","o":["went far beyond","exactly matched","did not reach","was twice as high as","was copied from"],"k":"Menyajikan kembali · makna kata, rujukan, parafrasa"},{"q":"Which list shows the renewable sources in the correct order, from the biggest to the smallest contribution in the first quarter of 2026?","o":["Geothermal power – hydropower – biomass power","Biomass power – hydropower – geothermal power","Hydropower – geothermal power – biomass power","Geothermal power – biomass power – hydropower","Hydropower – biomass power – geothermal power"],"k":"Mengelompokkan informasi"},{"q":"Which target is stated in the text?","o":["To reach 15.75 percent by 2030.","To supply 46 percent of the energy mix with renewables by 2045.","To stop using biodiesel by 2030.","To raise B40 to B100 by 2045.","To raise geothermal power to 40 percent by 2030."],"k":"Menemukan informasi rinci"},{"q":"What is the text mainly about?","o":["How banks decide who can open a savings account.","The history of paper money in Indonesia.","Why online shopping is replacing public transport.","How to scan a QR code at a small shop.","The characteristics and types of electronic money."],"k":"Meringkas · menentukan ide pokok"},{"q":"According to paragraph 2, where is the value of e-money stored?","o":["In a savings account at a bank","On paper receipts kept by the issuer","On a server or on a chip","In a government deposit fund","In the holder's wallet as cash only"],"k":"Menemukan informasi rinci"},{"q":"In paragraph 2, the word “issuer” refers to ...","o":["a person who pays money in advance","the bank or company that provides the e-money","a machine that reads e-money cards","a shop that accepts e-money","the law that regulates banks"],"k":"Menyajikan kembali · makna kata, rujukan, parafrasa"},{"q":"Which statement correctly combines information from paragraphs 3 and 4?","o":["All server-based e-money is registered, and all chip-based e-money is unregistered.","Registered e-money is stored only on chips, while unregistered e-money is stored only on servers.","Chip-based e-money is used only through mobile phones, and server-based e-money only through cards.","E-money can be grouped by where its value is stored (server or chip) and by whether the holder's identity is recorded (registered or unregistered).","Unregistered e-money has more features than registered e-money because it is stored on a server."],"k":"Mensintesis informasi antarparagraf"},{"q":"Which feature is usually offered by registered e-money?","o":["Fund transfers and cash withdrawals","Interest paid on the balance","A guarantee as a bank deposit","Use without any issuer","A balance that anyone can use if the card is lost"],"k":"Menemukan informasi rinci"},{"q":"What is the text mainly about?","o":["QRIS is a single national QR payment standard that is widely used in Indonesia.","QRIS is a chip-based card used only for public transport.","Bank Indonesia has stopped all payments made with cash.","Small shops are not allowed to use QRIS.","Travelers must exchange cash before paying with QRIS abroad."],"k":"Meringkas · menentukan ide pokok"},{"q":"According to Bank Indonesia, how many merchants accepted QRIS by June 2026?","o":["65.77 million","96.68 million","6 million","44.86 million","17 million"],"k":"Menemukan informasi rinci"},{"q":"Which sentence best restates “With QRIS, a merchant needs only one QR code”?","o":["A shop can accept payments only from one bank.","A customer must install one app for every shop.","A merchant must pay for a new QR code every day.","A shop can no longer accept cash.","A shop does not have to display a separate QR code for each payment provider."],"k":"Menyajikan kembali · makna kata, rujukan, parafrasa"},{"q":"Which option correctly matches each figure with what it describes?","o":["65.77 million – merchants; 44.86 million – users; 96.68 percent – MSMEs among the users","65.77 million – users; 44.86 million – merchants; 96.68 percent – merchants that were MSMEs","65.77 million – users; 44.86 million – MSMEs; 96.68 percent – all merchants","44.86 million – users; 65.77 million – MSMEs; 96.68 percent – merchants","96.68 million – users; 44.86 million – merchants; 65.77 percent – MSMEs"],"k":"Mengelompokkan informasi"},{"q":"According to the text, what can Indonesian travelers do with QRIS abroad?","o":["Withdraw cash from any foreign bank for free.","Open a new bank account in six countries.","Pay with their phones without exchanging cash into the local currency.","Buy foreign currency at a lower rate.","Use chip-based cards on any foreign bus."],"k":"Menemukan informasi rinci"}]};
+var L="ABCDE",TOTAL=60*60,N=D.qs.length,KEYV=atob("Q0JEQUVEQUNFQkVDQkRBQURFQkM=").split("").map(function(c){return c.charCodeAt(0)-65}),KEY="tes-formatif-bing-xii-v1";
+var ACC=["#15803d","#0369a1","#6d28d9","#c2410c"];
+var TITLE="Tes Formatif Bahasa Inggris Kelas XII — Renewable Energy & Electronic Money";
+function $(s){return document.querySelector(s)}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+var S={view:"start",t:0,name:"",kelas:"",sekolah:"",submitted:false,when:"",startAt:0,started:false,ans:[]};
+for(var i=0;i<N;i++)S.ans.push(-1);
+/* ---------- pengacakan soal (per teks; soal tetap berada di teks asalnya) ---------- */
+function ident(){var a=[];for(var i=0;i<N;i++)a.push(i);return a}
+function shuffled(){
+  var o=ident();
+  do{
+    for(var b=0;b<N;b+=5){
+      for(var i=b+4;i>b;i--){var k=b+Math.floor(Math.random()*(i-b+1));var x=o[i];o[i]=o[k];o[k]=x}
+    }
+  }while(o.every(function(v,i){return v===i}));
+  return o;
+}
+function validOrder(o){
+  if(!Array.isArray(o)||o.length!==N)return false;
+  var seen={};
+  for(var i=0;i<N;i++){
+    var v=o[i];
+    if(typeof v!=="number"||v<0||v>=N||Math.floor(v/5)!==Math.floor(i/5)||seen[v])return false;
+    seen[v]=1;
+  }
+  return true;
+}
+S.order=ident();
+try{
+  var j=JSON.parse(localStorage.getItem(KEY)||"null");
+  if(j&&Array.isArray(j.ans)&&j.ans.length===N){
+    S.ans=j.ans.map(function(a){return typeof a==="number"&&a>=0&&a<5?a:-1});
+    S.name=typeof j.name==="string"?j.name:"";
+    S.kelas=typeof j.kelas==="string"?j.kelas:"";S.sekolah=typeof j.sekolah==="string"?j.sekolah:"";
+    S.t=j.t>=0&&j.t<4?j.t:0;S.started=!!j.started;
+    if(validOrder(j.order))S.order=j.order;
+    S.startAt=typeof j.startAt==="number"?j.startAt:0;S.submitted=!!j.submitted&&S.started;S.when=typeof j.when==="string"?j.when:"";
+    S.view=(S.submitted||(j.view==="result"&&S.started))?"result":"start";
+    if(S.view==="result")S.submitted=true;
+  }
+}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({order:S.order,ans:S.ans,submitted:S.submitted,when:S.when,startAt:S.startAt,name:S.name,kelas:S.kelas,sekolah:S.sekolah,t:S.t,started:S.started,view:S.view}))}catch(e){}}
+function done(){return S.ans.filter(function(a){return a>=0}).length}
+function doneT(t){return S.ans.slice(t*5,t*5+5).filter(function(a){return a>=0}).length}
+
+/* ---------- timer hitung mundur ---------- */
+function remaining(){return S.startAt?Math.max(0,TOTAL-Math.floor((Date.now()-S.startAt)/1000)):TOTAL}
+function fmt(sec){var m=Math.floor(sec/60),r=sec%60;return (m<10?"0":"")+m+":"+(r<10?"0":"")+r}
+function tcls(sec){return sec<=300?" danger":sec<=600?" warn":""}
+function timerHTML(){var r=remaining();return '<div class="timer'+tcls(r)+'" role="timer" aria-label="Sisa waktu"><span aria-hidden="true">⏱</span> <b class="tv">'+fmt(r)+'</b></div>'}
+function tick(){
+  if(!S.started||S.submitted||!S.startAt)return;
+  var r=remaining();
+  Array.prototype.forEach.call(document.querySelectorAll(".tv"),function(e){e.textContent=fmt(r)});
+  Array.prototype.forEach.call(document.querySelectorAll(".timer"),function(e){e.className="timer"+tcls(r)});
+  if(r<=0){S.submitted=true;S.when=new Date().toISOString();go("result");toast("Waktu habis. Jawaban dikumpulkan otomatis.")}
+}
+
+/* ---------- identitas peserta ---------- */
+function fieldHTML(pre,key,label,ph,ac){
+  return '<div class="field"><label for="'+pre+key+'">'+label+' <span class="req" aria-hidden="true">*</span></label>'+
+    '<input id="'+pre+key+'" data-f="'+key+'" type="text" required aria-required="true" maxlength="80" autocomplete="'+ac+'" placeholder="'+ph+'" value="'+esc(S[key])+'">'+
+    '<span class="err" role="alert">Wajib diisi</span></div>';
+}
+function idFields(pre){
+  return '<div class="idgrid">'+fieldHTML(pre,"name","Nama siswa","Tulis nama lengkap","name")+fieldHTML(pre,"kelas","Kelas","Tulis kelas Anda","off")+fieldHTML(pre,"sekolah","Asal sekolah","Tulis nama sekolah","organization")+'</div>';
+}
+
+/* ---------- potongan tampilan ---------- */
+function topHTML(){
+  if(S.view==="start")return "";
+  if(S.view==="result")return '<div class="row"><div class="brand" style="display:block">Tes Formatif · Bahasa Inggris</div></div>';
+  var d=done();
+  var h='<div class="row"><div class="brand">Tes Formatif · Bahasa Inggris</div><div class="prog">'+timerHTML()+'<span>'+d+'/'+N+' terjawab</span><div class="bar" aria-hidden="true"><i style="width:'+(d/N*100)+'%"></i></div></div></div><nav class="steps" aria-label="Navigasi teks">';
+  D.texts.forEach(function(t,i){
+    h+='<button class="step" data-act="step" data-t="'+i+'"'+(S.view==="text"&&S.t===i?' aria-current="true"':'')+'>Text '+(i+1)+'<small>'+doneT(i)+'/5</small></button>';
+  });
+  h+='<button class="step" data-act="finish"'+(S.view==="result"?' aria-current="true"':'')+'>Kumpulkan</button></nav>';
+  return h;
+}
+function pagerHTML(){
+  if(S.view!=="text")return "";
+  var last=S.t===3;
+  return '<button class="btn ghost" data-act="prev"'+(S.t===0?' disabled':'')+'>‹ Sebelumnya</button>'+
+    '<div class="pinfo">Text '+(S.t+1)+' dari 4 · '+doneT(S.t)+'/5 soal terjawab</div>'+
+    (last?'<button class="btn" data-act="finish">Kumpulkan jawaban ✓</button>':'<button class="btn" data-act="next">Text berikutnya ›</button>');
+}
+function qHTML(n){
+  var id=S.order[n],q=D.qs[id],a=S.ans[id];
+  var h='<article class="card q'+(a>=0?' done':'')+'" id="q'+n+'"><div class="qh"><span class="qn">Soal '+(n+1)+'</span><span class="tag">'+esc(q.k)+'</span></div><fieldset><legend>'+esc(q.q)+'</legend>';
+  q.o.forEach(function(o,i){
+    h+='<label class="opt'+(a===i?' sel':'')+'"><input type="radio" name="q'+id+'" value="'+i+'"'+(a===i?' checked':'')+'><b>'+L[i]+'</b><span>'+esc(o)+'</span></label>';
+  });
+  return h+'</fieldset></article>';
+}
+function startHTML(){
+  var d=done();
+  var h='<section class="hero"><span class="pillk">KUIS PEMAHAMAN TEKSTUAL</span><h1>Tes Formatif<br>Bahasa Inggris Kelas XII</h1><p class="sub">Renewable Energy &amp; Electronic Money</p><p class="meta">4 teks bacaan · 20 soal pilihan ganda · 60 menit</p><div class="topics">';
+  D.texts.forEach(function(t,i){
+    h+='<div class="card topic" style="--c:'+ACC[i]+'"><small>TEXT '+(i+1)+' · SOAL '+(i*5+1)+'–'+(i*5+5)+'</small><b>'+esc(t.title)+'</b></div>';
+  });
+  h+='</div><div class="card howto"><h3>Petunjuk</h3><ul><li>Baca setiap teks, lalu jawab lima soal di sampingnya (atau di bawahnya pada layar kecil).</li><li>Pilih <b>satu</b> jawaban untuk setiap soal. Jawaban boleh diubah kapan saja sebelum dikumpulkan.</li><li>Anda bebas berpindah antar teks lewat tombol di bagian atas.</li><li>Waktu pengerjaan <b>60 menit</b> dengan hitung mundur yang dimulai saat Anda menekan <b>Mulai Kuis</b>. Jawaban dikumpulkan otomatis ketika waktu habis.</li><li>Jawaban tersimpan otomatis di perangkat ini.</li><li>Setelah selesai, tekan <b>Kumpulkan jawaban</b> untuk melihat skor Anda. Jawaban <b>tidak dapat diubah</b> setelah dikumpulkan.</li></ul></div>';
+  h+='<div class="card idcard"><h3>Identitas Peserta</h3><p class="note">Isi semua kolom (<span style="color:#dc2626">*</span>) sebelum memulai kuis.</p>'+idFields("f_")+'<div class="go" style="flex-direction:column;align-items:center;gap:10px">'+(S.startAt&&!S.submitted?'<p class="note" style="margin:0">Waktu sedang berjalan · sisa <b class="tv">'+fmt(remaining())+'</b></p>':'')+'<button class="btn big" data-act="start">'+(d>0?'Lanjutkan ('+d+'/'+N+' terjawab)':'Mulai Kuis')+'</button></div></div></section>';
+  return h;
+}
+function textHTML(){
+  var t=S.t,T=D.texts[t];
+  var h='<div class="wrap"><section class="card passage" aria-label="Teks bacaan"><div class="kick">Text '+(t+1)+' dari 4 · Soal '+(t*5+1)+'–'+(t*5+5)+'</div><h2>'+esc(T.title)+'</h2><p class="hint">Angka di sebelah kiri menunjukkan nomor paragraf.</p>';
+  T.paras.forEach(function(p,i){h+='<div class="para"><span class="pn" aria-label="Paragraf '+(i+1)+'">'+(i+1)+'</span><p>'+esc(p)+'</p></div>'});
+  h+='</section><section aria-label="Soal">';
+  for(var n=t*5;n<t*5+5;n++)h+=qHTML(n);
+  return h+'</section></div>';
+}
+function score(){var c=0;for(var i=0;i<N;i++)if(S.ans[i]===KEYV[i])c++;return c}
+function resultHTML(){
+  var c=score(),nilai=Math.round(c/N*100);
+  var w=S.when?new Date(S.when):new Date();
+  var h='<section class="res"><div class="kick">Hasil Kuis</div><h1>Skor Anda</h1><div class="card scorecard">';
+  h+='<div class="sc-n" aria-label="Nilai '+nilai+' dari 100">'+nilai+'</div><div class="sc-l">Nilai (skala 0–100)</div>';
+  h+='<div class="sc-d">Jawaban benar <b>'+c+'</b> dari <b>'+N+'</b> soal</div>';
+  h+='<dl class="sc-id"><dt>Nama</dt><dd>'+esc(S.name)+'</dd><dt>Kelas</dt><dd>'+esc(S.kelas)+'</dd><dt>Asal sekolah</dt><dd>'+esc(S.sekolah)+'</dd><dt>Waktu</dt><dd>'+esc(w.toLocaleString("id-ID"))+'</dd></dl>';
+  return h+'</div></section>';
+}
+
+/* ---------- render & aksi ---------- */
+function fit(){var t=$("#top");document.documentElement.style.setProperty("--hdr",(t&&t.offsetHeight?t.offsetHeight:0)+"px")}
+function meta(){$("#top").innerHTML=topHTML();$("#pager").innerHTML=pagerHTML();fit()}
+function render(){
+  document.body.className=S.view==="text"?"th"+S.t:"";
+  $("#app").innerHTML=S.view==="start"?startHTML():S.view==="text"?textHTML():resultHTML();
+  meta();
+  document.title=S.view==="text"?"Text "+(S.t+1)+" · Kuis Tes Formatif Bahasa Inggris":"Kuis Tes Formatif Bahasa Inggris – Renewable Energy & Electronic Money";
+}
+function go(view,t,scrollN){
+  S.view=view;if(t!=null)S.t=t;save();render();
+  if(scrollN!=null){var el=$("#q"+scrollN);if(el){el.scrollIntoView({block:"start"});var r=el.querySelector("input");return}}
+  window.scrollTo(0,0);
+}
+var tt;
+function toast(m){var e=$("#toast");e.textContent=m;e.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){e.classList.remove("on")},2200)}
+document.addEventListener("click",function(e){
+  var b=e.target.closest&&e.target.closest("[data-act]");if(!b)return;
+  var a=b.dataset.act;
+  if(a==="start"){
+    var bad=null;
+    ["name","kelas","sekolah"].forEach(function(k){
+      var el=$("#f_"+k),v=el?el.value.trim():"";S[k]=v;
+      if(el)el.closest(".field").classList.toggle("bad",!v);
+      if(!v&&!bad)bad=el;
+    });
+    if(bad){save();bad.focus();return}
+    if(done()===0)S.order=shuffled();if(!S.startAt)S.startAt=Date.now();S.started=true;go("text",S.t)}
+  else if(a==="step")go("text",+b.dataset.t);
+  else if(a==="prev"&&S.t>0)go("text",S.t-1);
+  else if(a==="next"&&S.t<3)go("text",S.t+1);
+  else if(a==="finish"){
+    if(S.submitted)return;
+    var un=N-done();
+    var msg=(un>0?"Masih ada "+un+" soal yang belum dijawab.\n":"")+"Setelah dikumpulkan, jawaban tidak dapat diubah. Kumpulkan sekarang?";
+    if(window.confirm(msg)&&!S.submitted){S.submitted=true;S.when=new Date().toISOString();go("result")}
+  }
+});
+document.addEventListener("change",function(e){
+  var r=e.target;
+  if(!r||!r.matches||!r.matches('input[type="radio"]'))return;
+  if(S.submitted)return;var n=+r.name.slice(1);S.ans[n]=+r.value;save();
+  var card=r.closest(".q");card.classList.add("done");
+  card.querySelectorAll(".opt").forEach(function(l,i){l.classList.toggle("sel",i===S.ans[n])});
+  meta();
+});
+document.addEventListener("input",function(e){
+  var t=e.target;
+  if(t&&t.dataset&&t.dataset.f){S[t.dataset.f]=t.value.trim();save();if(t.value.trim()&&t.closest(".field"))t.closest(".field").classList.remove("bad")}
+});
+window.addEventListener("resize",fit);
+render();
+tick();setInterval(tick,1000);
+document.addEventListener("visibilitychange",tick);
+})();
+</script>
+</body>
+</html>
